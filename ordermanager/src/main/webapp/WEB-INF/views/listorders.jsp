@@ -12,9 +12,11 @@
 </head>
 <body>
 
-<h2 class="basic-grey"><spring:message code="label.listorders" /></h2>
 
-<ul class="basic-grey">
+<div id="menu" class="basic-grey"  >
+<h2><spring:message code="label.listorders" /></h2>
+
+<ul>
 <li><a href="<c:url value="/newOrder" />">
 	<spring:message code="label.neworder" />
 </a>
@@ -46,7 +48,7 @@
 		</c:forEach>
 	</table>
 </c:if>
-		
+</div>
 
 
 
