@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf8"
+ <%@ page language="java" contentType="text/html; charset=utf8"
 	pageEncoding="utf8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -43,9 +43,12 @@
 </head>
 <body>
 
-<h2 class="basic-grey"><spring:message code="label.neworder" /></h2>
 
-<ul class="basic-grey">
+
+<form:form method="post" action="addItem" commandName="dish" class="basic-grey" id="menu">
+<h2><spring:message code="label.neworder" /></h2>
+
+<ul>
 <li><a href="<c:url value="/newOrder" />">
 	<spring:message code="label.neworder" />
 </a>
@@ -59,9 +62,6 @@
 </a>
 </li>
 </ul>
-
-<form:form method="post" action="addItem" commandName="dish" class="basic-grey">
-
 	<form:label path="type.id">
 		<spring:message code="label.category" />
 	</form:label>
@@ -82,7 +82,10 @@
 	<input type="submit" class="button" value="<spring:message code="label.additem"/>" />
 </form:form>
 
-<h3 class="basic-grey"><spring:message code="label.selected" /></h3>
+
+		
+<form:form method="post" action="addOrder" commandName="order" class="basic-grey" id="menu">
+	<h3><spring:message code="label.selected" /></h3>
 <c:if test="${!empty currentOrder}">
 	<table class="simple-little-table">
 		<tr>
@@ -106,8 +109,6 @@
 		</tr>
 	</table>
 </c:if>
-		
-<form:form method="post" action="addOrder" commandName="order" class="basic-grey">
 	<input type="submit" class="button" value="<spring:message code="label.addorder"/>" />
 </form:form>
 
