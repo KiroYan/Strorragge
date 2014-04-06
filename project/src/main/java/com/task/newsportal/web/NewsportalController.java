@@ -44,7 +44,7 @@ public class NewsportalController {
 		int start = (page - 1) * 10;
 		int end = (newsList.size() < start + 10)? newsList.size() : start + 10;
 		boolean hasNext = end < newsList.size();
-        boolean hasPrevious = start > 0; 
+        	boolean hasPrevious = start > 0; 
 		
 		for(int i = start; i < end; i++) {
 			portion.add(newsList.get(i));
@@ -76,24 +76,17 @@ public class NewsportalController {
 	
 	@RequestMapping("/tag/{name}/{page}")
     public String newsByTag(@PathVariable("name") String tagName, @PathVariable("page") Integer page, Map<String, Object> map) {
-		Tag tag = tagService.getTagByName(tagName);
-		List<News> newsList = null;
-		List<News> portion = new ArrayList<News>();
-		int start = (page - 1) * 10;
-		int end = (newsList.size() < start + 10)? newsList.size() : start + 10;
-		boolean hasNext = end < newsList.size();
+	Tag tag = tagService.getTagByName(tagName);
+	List<News> newsList = tagService.getNews(tag.getId());
+	List<News> portion = new ArrayList<News>();
+	int start = (page - 1) * 10;
+	int end = (newsList.size() < start + 10)? newsList.size() : start + 10;
+	boolean hasNext = end < newsList.size();
         boolean hasPrevious = start > 0;
-		
-		if(tag != null) {
-			newsList = tagService.getNews(tag.getId());
-		} else {
-			return "redirect:/1";
-		}
-		
-		
-		for(int i = start; i < end; i++) {
-			portion.add(newsList.get(i));
-		}
+        
+        for(int i = start; i < end; i++) {
+		portion.add(newsList.get(i));
+	}
 		     
         map.put("tag", tag);
         map.put("found", newsList.size());
