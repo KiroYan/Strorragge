@@ -22,7 +22,7 @@ public class NewsDAOImpl implements NewsDAO {
     private SessionFactory sessionFactory;
 	
 	@Autowired
-	private TagService tagService;
+	private TagDAO tagDAO;
 	
 	public void addNews(News news) {
 		sessionFactory.getCurrentSession().save(news);
@@ -45,7 +45,7 @@ public class NewsDAOImpl implements NewsDAO {
 	}
 
 	public List<News> listNewsForTag(Integer typeId) {
-		return tagService.getNews(typeId);
+		return tagDAO.getNews(typeId);
 	}
 
 	@SuppressWarnings("unchecked")
